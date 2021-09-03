@@ -1,0 +1,139 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Mailing MS",
+    "description": "Microservicio para el envío de correos a través de Dana",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://springdoc.org"
+    },
+    "version": "3.0.0"
+  },
+  "externalDocs": {
+    "description": "Prima AFP Wiki Documentation",
+    "url": "https://dev.azure.com/PrimaAFPTeam/PrimaServices/_wiki/wikis/PrimaServices.wiki/22/Prima-AFP-API-y-Servicios"
+  },
+  "servers": [
+    {
+      "url": "http://__ingress__/sp-mailing"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Mailing Controller",
+      "description": "."
+    }
+  ],
+  "paths": {
+    "/mailing/v1/upload": {
+      "post": {
+        "tags": [
+          "mailing-controller"
+        ],
+        "summary": "Upload Service",
+        "description": "Upload file in the document containers Dana.",
+        "operationId": "fileUploadUsingPOST",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileUploadResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mailing/v1/{conversationId}": {
+      "post": {
+        "tags": [
+          "mailing-controller"
+        ],
+        "summary": "Mailing Service",
+        "description": "Send an email to one or a list of users.",
+        "operationId": "sendEmailUsingPOST",
+        "parameters": [
+          {
+            "name": "conversationId",
+            "in": "path",
+            "description": "conversationId",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/MailingRequestDto"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation."
+          },
+          "400": {
+            "description": "Missed or invalid request data."
+          },
+          "404": {
+            "description": "Don't exists available info for the provided data."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "FileUploadResponseDto": {
+        "title": "FileUploadResponseDto",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        }
+      },
+      "MailingRequestDto": {
+        "title": "MailingRequestDto",
+        "type": "object",
+        "properties": {
+          "additionalValues": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

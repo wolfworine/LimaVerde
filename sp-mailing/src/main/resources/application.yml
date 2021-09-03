@@ -1,0 +1,17 @@
+dana:
+  basic-auth:
+    username: "nbohorquez@afpprima"
+    password: "AFPPrima.2021"
+  proxy:
+    baseUrl: https://appserv.danaconnect.com/
+
+apolo:
+  documentation:
+    enabled: true
+    api:
+      title: Mailing API
+      description: API para el envío de correos a través de Dana
+      version: 3.0.0
+  tracing:
+    obfuscation:
+      enabled: true
