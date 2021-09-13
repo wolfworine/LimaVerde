@@ -31,7 +31,7 @@ public class PuntoReciclajeController {
 		return ResponseEntity.ok().body(this.puntoReciclajeService.getList(map));
 	}
 	
-	@GetMapping(value = "/punto/reciclaje/{idPunto}", produces = { "application/json" })
+	@GetMapping(value = "/puntos/reciclaje/{idPunto}", produces = { "application/json" })
 	public ResponseEntity<GetPuntoReciclajeResponseDto> getPunto(
 			@PathVariable(name = "idPunto", required = true) Long idPunto, @RequestParam Map<String, String> map) {
 		return ResponseEntity.ok().body(this.puntoReciclajeService.getPunto(idPunto, map));
