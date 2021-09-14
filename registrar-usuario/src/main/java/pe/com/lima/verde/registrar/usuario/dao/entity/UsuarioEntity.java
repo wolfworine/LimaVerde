@@ -1,5 +1,7 @@
 package pe.com.lima.verde.registrar.usuario.dao.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,15 +22,16 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UsuarioEntity {
+public class UsuarioEntity implements Serializable {
 	
+  /**
+	 * 
+	 */
+  private static final long serialVersionUID = 1L;
+
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO,
-	        generator="native"
-		  )
-		  @GenericGenerator(
-		          name = "native",
-		          strategy = "native")
+  @GeneratedValue(strategy = GenerationType.AUTO,generator="native")
+  @GenericGenerator(name = "native",strategy = "native")
   @Column(name = "ID_USU")
   private Long id;
 
@@ -55,4 +58,5 @@ public class UsuarioEntity {
   
   @Column(name = "C_GEN_USR", nullable = true)
   private String genero;
+  
 }
