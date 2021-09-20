@@ -11,13 +11,13 @@ public class DetalleCommonServiceImpl implements DetalleCommonService {
 
 	public DetallePuntosDto getObjectToDetallePuntosDto(Object[] source) {
 		return DetallePuntosDto.builder().totalPuntosAcumulados(Double.parseDouble(source[0].toString()))
-				.totalPuntosCargados(Double.parseDouble(source[1].toString()))
+				.totalPuntosCanjeados(Double.parseDouble(source[1].toString()))
 				.build();
 	}
 	
 	public ReciclajeDto getObjectToReciclajeDto(Object[] source) {
 		return ReciclajeDto.builder().nVecesReciclado(Integer.parseInt(source[0].toString()))
-				.totalPuntosCargados(Double.parseDouble(source[1].toString()))
+				.totalPuntosAcumulados(Double.parseDouble(source[1].toString()))
 				.build();
 	}
 

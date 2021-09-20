@@ -31,7 +31,7 @@ public class GetDetallePuntosResponseDto implements Serializable {
 	public static class DetallePuntosDto implements Serializable {
 		private static final long serialVersionUID = -1305074895774914370L;
 		private Double totalPuntosAcumulados;
-		private Double totalPuntosCargados;
-		private Double totalPuntosXCargar;
+		private Double totalPuntosCanjeados;
+		private Double totalPuntosXCanjear;
 	}
 }

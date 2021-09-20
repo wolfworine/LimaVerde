@@ -30,6 +30,6 @@ public class GetMiReciclajeResponseDto implements Serializable {
 	public static class ReciclajeDto implements Serializable {
 		private static final long serialVersionUID = -1305074895774914370L;
 		private Integer nVecesReciclado;
-		private Double totalPuntosCargados;
+		private Double totalPuntosAcumulados;
 	}
 }

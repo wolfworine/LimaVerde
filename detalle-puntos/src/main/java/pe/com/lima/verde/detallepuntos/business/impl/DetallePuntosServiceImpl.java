@@ -49,9 +49,8 @@ public class DetallePuntosServiceImpl implements DetallePuntosService {
         Object[] arrayObject = listArrayObject.get(0);
         
 		DetallePuntosDto detallePuntos= this.detalleCommonService.getObjectToDetallePuntosDto(arrayObject); //
-		//Long resto=Long.valueOf(detallePuntos.getTotalPuntosAcumulados())-Long.valueOf(detallePuntos.getTotalPuntosCargados());
-		
-		detallePuntos.setTotalPuntosXCargar(detallePuntos.getTotalPuntosAcumulados()-detallePuntos.getTotalPuntosCargados());
+
+		detallePuntos.setTotalPuntosXCanjear(detallePuntos.getTotalPuntosAcumulados()-detallePuntos.getTotalPuntosCanjeados());
 		
 		GetDetallePuntosResponseDto.Response response = new GetDetallePuntosResponseDto.Response();
 		response.setDetallePuntos(detallePuntos);
