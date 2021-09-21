@@ -2,6 +2,7 @@ package pe.com.lima.verde.reciclaje.registrado.expose.dto;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,7 +23,7 @@ public class GetReciclajeRegistradoDto implements Serializable {
 	public static class Response implements Serializable {
 		private static final long serialVersionUID = -526261566498569L;
         private Long totalItems;
-        private ReciclajeHistorialDto HistorialReciclaje;
+        private List<ReciclajeHistorialDto> ListaHistoReciclaje;
         private Integer totalPages;
         private Integer currentPage;
 	}

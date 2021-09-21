@@ -21,7 +21,7 @@ public class ReciclajeRegistradoController {
 	
 	@GetMapping(value = "/reciclaje/registrado/{idUsuario}", produces = { "application/json" })
 	public ResponseEntity<GetReciclajeRegistradoDto> getHistorialReciclaje(
-			@PathVariable(name = "idUsuario", required = true) Integer idUsuario, @RequestParam Map<String, String> map) {
+			@PathVariable(name = "idUsuario", required = true) Long idUsuario, @RequestParam Map<String, String> map) {
 		return ResponseEntity.ok().body(this.reciclajeRegistradoService.getHistorialReciclaje(idUsuario, map));
 	}
 }

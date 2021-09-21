@@ -6,6 +6,7 @@ import java.util.Map;
 import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import lombok.extern.slf4j.Slf4j;
 import pe.com.lima.verde.reciclaje.registrado.business.ReciclajeCommonService;
 import pe.com.lima.verde.reciclaje.registrado.business.ReciclajeRegistradoService;
+import pe.com.lima.verde.reciclaje.registrado.dao.entity.ReciclajeRegistradoEntity;
 import pe.com.lima.verde.reciclaje.registrado.dao.repository.ReciclajeRegistrdoRepository;
 import pe.com.lima.verde.reciclaje.registrado.expose.dto.GetReciclajeRegistradoDto;
 import pe.com.lima.verde.reciclaje.registrado.expose.dto.GetReciclajeRegistradoDto.ReciclajeHistorialDto;
@@ -34,7 +36,7 @@ public class ReciclajeRegistradoServiceImpl implements ReciclajeRegistradoServic
 	@Autowired
 	private ReciclajeCommonService reciclajeCommonService;
 	@Override
-	public GetReciclajeRegistradoDto getHistorialReciclaje(Integer idUsuario, Map<String, String> map) {
+	public GetReciclajeRegistradoDto getHistorialReciclaje(Long idUsuario, Map<String, String> map) {
 		Util.setParamAuditoriaRequestDtoInMap(map);
 		MDC.put(Constante.Auditoria.Parametro.ID_RASTREO, Util.getIdRastreoOfMap(map));
 		AuditoriaRequestDto auditoriaRequestDto = Util.getAuditoriaRequestDtoOfMap(map);
@@ -42,14 +44,17 @@ public class ReciclajeRegistradoServiceImpl implements ReciclajeRegistradoServic
 		Util.validateParamAuditoriaRequestDtoOfMap(map);
 		
 		Pageable pageable = this.getPageable(map);
-		List<Object[]> listArrayObject = this.reciclajeRegistradoRepository.getHistorialReciclaje(idUsuario);
-        if (listArrayObject.isEmpty()) throw new NotFoundException(auditoriaRequestDto.getIdRastreo());
-        Object[] arrayObject = listArrayObject.get(0);
-        
-        ReciclajeHistorialDto historial= this.reciclajeCommonService.getObjectToHistorialReciclajeDto(arrayObject); //		
+		Page<ReciclajeRegistradoEntity> pageEntities = this.reciclajeRegistradoRepository.findByIdUsuario(idUsuario,pageable)
+				.orElseThrow(() -> new NotFoundException(auditoriaRequestDto.getIdRastreo()));
+	    List<ReciclajeRegistradoEntity> reciclajeRegistradoEntity = pageEntities.getContent();
+
+	    List<ReciclajeHistorialDto> historial= this.reciclajeCommonService.getObjectToHistorialReciclajeDto(reciclajeRegistradoEntity); //		
 		
 		GetReciclajeRegistradoDto.Response response = new GetReciclajeRegistradoDto.Response();
-		response.setHistorialReciclaje(historial);
+		response.setTotalItems(pageEntities.getTotalElements());
+		response.setListaHistoReciclaje(historial);
+		response.setTotalPages(pageEntities.getTotalPages());
+		response.setCurrentPage(pageEntities.getNumber());
 		
 		GetReciclajeRegistradoDto getReciclajeRegistraDto = GetReciclajeRegistradoDto.builder()
 				.auditoria(Util.getAuditoriaResponseDto(auditoriaRequestDto.getIdRastreo(), HttpStatus.OK.value(),
