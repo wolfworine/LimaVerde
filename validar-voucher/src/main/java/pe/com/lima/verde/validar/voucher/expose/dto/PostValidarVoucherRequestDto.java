@@ -20,6 +20,10 @@ public class PostValidarVoucherRequestDto implements Serializable {
 	@NoArgsConstructor
 	public static class Request implements Serializable {
 		private static final long serialVersionUID = -1305074895774914370L;
+        private Long idPuntoReciclaje;
+        private Long idConversion;
+        private Long codRegistro;
+        private Long tipoOperacion;
         private VoucherDto voucher;
 	}
 

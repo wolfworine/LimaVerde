@@ -20,6 +20,8 @@ public class PostValidarVoucherResponseDto implements Serializable {
 	@NoArgsConstructor
 	public static class Response implements Serializable {
 		private static final long serialVersionUID = -1305074895774914370L;
+        private Long idPuntajes;
+        private Long idHistReci;
         private String mensaje;
 	}
 }
