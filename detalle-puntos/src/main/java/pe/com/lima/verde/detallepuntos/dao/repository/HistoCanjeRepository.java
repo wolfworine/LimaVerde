@@ -12,7 +12,7 @@ import pe.com.lima.verde.detallepuntos.dao.entity.HistoCanjeEntity;
 @Repository
 public interface HistoCanjeRepository extends JpaRepository<HistoCanjeEntity, Long> {
 	
-	@Query(value ="select b.tota_hist_puntos,c.tota_puntos_can  from (\n" + 
+	@Query(value ="select IFNULL(b.tota_hist_puntos,0),IFNULL(c.tota_puntos_can,0)  from (\n" + 
 			"(select  sum(hr.c_puntos_acumu) as tota_hist_puntos \n" + 
 			"from tb_hist_reciclaje hr \n" + 
 			"where hr.n_id_usuario = :idUsuario)b, \n" + 
