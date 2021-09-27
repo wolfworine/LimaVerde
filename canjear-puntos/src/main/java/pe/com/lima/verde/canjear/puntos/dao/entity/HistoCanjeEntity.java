@@ -1,6 +1,7 @@
 package pe.com.lima.verde.canjear.puntos.dao.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -44,6 +45,6 @@ public class HistoCanjeEntity implements Serializable {
 	@Column(name = "N_PUNTOS_CANJEADOS", nullable = true)
 	private Long puntosCanjeados;
 	@Column(name = "N_TOT_PASAJE", nullable = true)
-	private Long totalPasaje;
+	private BigDecimal  totalPasaje;
 	
 }
