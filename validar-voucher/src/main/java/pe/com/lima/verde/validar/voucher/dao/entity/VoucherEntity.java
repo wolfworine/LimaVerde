@@ -33,8 +33,8 @@ public class VoucherEntity {
   @Column(name = "N_BOT_REG", nullable = true)
   private Long nroBotReg;
 
-  @Column(name = "C_ID_PUNTO_RECICLAJE", nullable = true)
-  private Long idPuntoReciclaje;
+  @Column(name = "n_id_puntajes", nullable = true)
+  private Long idPuntajes;
 
   @Column(name = "D_FECHA_HORA_REG", nullable = true)
   private LocalDateTime fechaHoraReg;
@@ -42,6 +42,6 @@ public class VoucherEntity {
   @Column(name = "C_ESTADO", nullable = true)
   private String estado;
   
-  @Column(name = "N_ID_USUARIO")
+  @Column(name = "N_ID_USU")
   private Long idUsuario;
 }

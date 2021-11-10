@@ -28,7 +28,7 @@ public class ReciclajeRegistradoEntity {
 	  private Long idHistorialReciclaje;
 
 	  @Column(name = "C_CODIGO_REG", nullable = true)
-	  private Long CodigoRegistrado;
+	  private Long codigoRegistrado;
 
 	  @Column(name = "N_ID_VOUCHER", nullable = true)
 	  private Long idVoucher;
@@ -42,7 +42,7 @@ public class ReciclajeRegistradoEntity {
 	  @Column(name = "C_PUNTOS_ACUMU", nullable = true)
 	  private Double puntosAcumulados;
 	  
-	  @Column(name="N_ID_USUARIO",nullable = true)
+	  @Column(name="N_ID_USU",nullable = true)
 	  private Long idUsuario;
 	
 }

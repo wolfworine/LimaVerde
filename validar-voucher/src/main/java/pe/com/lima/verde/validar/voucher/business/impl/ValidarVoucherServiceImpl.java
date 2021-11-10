@@ -92,7 +92,7 @@ public class ValidarVoucherServiceImpl implements ValidarVoucherService {
         	idHistReci=this.histoReciclajeRepository.save(HistoReciclajeEntity.builder()
 	        	.codRegistro(postValidarVoucherRequestDto.getRequest().getCodRegistro())
 	        	.idVoucher(voucherEntity.get().getIdVoucher())
-	        	.idPuntoReciclaje(voucherEntity.get().getIdPuntoReciclaje())
+	        	.idPuntoReciclaje(voucherEntity.get().getIdPuntajes())
 	        	.fechaHoraRegistro(localDateTime)
 	            .puntosAcumulado(puntaje)
 	        	.idUsuario(voucherDto.getIdUsuario()).build()).getIdHistReci();

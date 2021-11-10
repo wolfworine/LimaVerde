@@ -32,7 +32,7 @@ public class UsuarioEntity implements Serializable {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO,generator="native")
   @GenericGenerator(name = "native",strategy = "native")
-  @Column(name = "ID_USU")
+  @Column(name = "N_ID_USU")
   private Long id;
 
   @Column(name = "C_LOG_USR", nullable = true)

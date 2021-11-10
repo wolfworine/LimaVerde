@@ -23,7 +23,7 @@
 		<spring-cloud.version>Hoxton.SR6</spring-cloud.version>
 
 		<sonar.coverage.exclusions>
-			**/DetallePuntosApplication.java,
+			**/PuntoReciclajeApplication.java,
 			**/config/*,**/exception*,**/proxy*,**/util*
 		</sonar.coverage.exclusions>
 	</properties>

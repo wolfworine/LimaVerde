@@ -41,7 +41,7 @@ public class HistoReciclajeEntity implements Serializable {
 	private LocalDateTime fechaHoraRegistro;
 	@Column(name = "C_PUNTOS_ACUMU", nullable = true)
 	private Long puntosAcumulado;
-	@Column(name = "N_ID_USUARIO", nullable = true)
+	@Column(name = "N_ID_USU", nullable = true)
 	private Long idUsuario;
 	
 }
